@@ -11,21 +11,21 @@ const styles = StyleSheet.create({
     },
     card: {
         padding: 10,
-        alignItems: 'center', // Centraliza horizontalmente
+        alignItems: 'center',
     },
     nome: {
-        fontSize: 24, // Tamanho da fonte
-        fontWeight: 'bold', // Negrito
-        color: '#333', // Cor do texto
-        textAlign: 'center', // Centraliza o texto
-        marginVertical: 10, // Espaço em cima e embaixo do título
+        fontSize: 24,
+        fontWeight: 'bold', 
+        color: '#333', 
+        textAlign: 'center', 
+        marginVertical: 10, 
     },
     descricao:{
-        fontSize: 16, // Tamanho da fonte
-        color: '#666', // Cor do texto 
+        fontSize: 16, 
+        color: '#666',
         textAlign: 'justify',
-        lineHeight: 24, // Define o espaçamento entre as linhas
-        marginHorizontal: 20, // Margem nas laterais
+        lineHeight: 24, 
+        marginHorizontal: 20, // margem nas laterais
     }
 
   });
