@@ -20,21 +20,22 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   imagem: {
-    width: '100%',
-    height: 150,
+    width: '90%',
+    height: 250,
     borderRadius: 10,
     marginBottom: 10,
+    alignSelf: 'center',
   }
 });
 
 // Dados da lista
 
-const viagens = [
+const Eventos = [
   { 
     id: '1', 
     Evento: 'Casa Do Autista', 
     data: '2024-07-10', 
-    Local: '7 dias', 
+    Local: 'Casa Do Autista - Balneário', 
     imagem: require('../img/casaautista.png') 
   },
   { 
@@ -51,16 +52,24 @@ const viagens = [
     Local: 'Shopping Oka Floripa', 
     imagem: require ('../img/natal.png')
   },
+  { 
+    id: '4', 
+    Evento: 'Halloween', 
+    data: '2023-10-31', 
+    Local: 'Espelho d´água - Pedra Branca', 
+    imagem: require ('../img/Halloween.png')
+  },
+
 ];
 
 
 //Aqui seria como um "HTML" do app, a estrutura dele
-const HistoricoViagens = () => {
+const HistoricoEvento = () => {
   return (
     <View style={styles.container}>
-      <Text style={styles.titulo}>Histórico de Viagens</Text>
+      <Text style={styles.titulo}>Meus Eventos</Text>
       <FlatList
-        data={viagens}
+        data={Eventos}
         keyExtractor={item => item.id}
         renderItem={Caixa}
       />
@@ -83,4 +92,4 @@ const Caixa = ({ item }) => (
 
 
 
-export default HistoricoViagens;
+export default HistoricoEvento;
