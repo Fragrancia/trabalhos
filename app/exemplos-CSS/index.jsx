@@ -26,6 +26,11 @@ const styles = StyleSheet.create({
       borderRadius: 50,
       marginBottom: 20,
       alignSelf: 'center', //pra centraliar a img
+      width: 150,  // Define a largura da imagem
+      height: 150, // Define a altura da imagem
+      borderRadius: 12,
+      marginRight: 10,  // Espaçamento entre imagem e texto
+
     },
     Legenda: {
       fontSize: 16, // tamanho da fonte

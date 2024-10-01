@@ -1,69 +1,93 @@
-import React from 'react';
-import { View, Text, Image, Button, StyleSheet, ScrollView } from 'react-native';
-import {Link} from 'expo-router'
-import { FlatList } from 'react-native-web';
-
-const styles = StyleSheet.create({
-  
-})
-
-const comidas = [
-    { 
-      id: '1', 
-      nome: 'Coxinha', 
-      imagem: source={uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEJYnk19-jrGFPClIRsq16Ni2KtX-xgqkJkA&s'},
-      preco: 'R$ 2,50'
-    },
-    { 
-        id: '2', 
-        nome: 'Quibe', 
-        imagem: source={uri: 'https://acdn.mitiendanube.com/stores/001/282/481/products/quibe-medio1-ad062cba5da6e96e4d16291378894295-640-0.jpeg'},
-        preco: 'R$ 3,50'
-      },
-      { 
-        id: '3', 
-        nome: 'Doguinho', 
-        imagem: source={uri: 'https://lh3.googleusercontent.com/proxy/qn_dmDSjo_H4Uif536niW18doRJQ5t0IunwiAphzoHXDNf-F7E_6-9kuYNMx0QO0JfDwwqWbnbmJJG1zzWRr0IwnueM67y5QEYA0UuuzuyrLy_NZfWZN2zfjkrMQHgi6VT2kg7jqTwZCy74'},
-        preco: 'R$ 4,00'
-      },
-      { 
-        id: '4', 
-        nome: 'Salsicha', 
-        imagem: source={uri: 'https://nutrimassasesalgados.com/wp-content/uploads/2020/05/MG_6537-copiar.jpg'},
-        preco: 'R$ 2,50'
-      },
-      { 
-        id: '5', 
-        nome: 'Pão de Queijo', 
-        imagem: source={uri: 'https://cache-backend-mcd.mcdonaldscupones.com/media/image/product$kuXEyh5D/200/200/original?country=br'},
-        preco: 'R$ 1,50'
-      },
-];
+import React, {useState, useContext} from 'react';
+import { View, Text, StyleSheet, FlatList, Image, Button, Alert} from 'react-native';
+import { Link } from 'expo-router';
+import { AppContext } from '../../scripts/AppContext';
 
 const Comidas = () => {
-  return (
-    <View style={styles.container}>
-      <Text style={styles.titulo}>Salgados</Text>
-      <FlatList
-        data={comidas}
-        renderItem={Caixa}
-      />
-    </View>
-  );
+    const comida = [
+        { id: 1, titulo: 'Pastel', preco: '5,50', Image: require('./img/pasteis.png') },
+        { id: 2, titulo: 'Pão de Queijo', preco: '2,50', Image: require('./img/paodequeijo.png') },
+        { id: 3, titulo: 'Quibe', preco: '3,00', Image: require('./img/quibe.png') },
+    ];
+    const {carrinho, setCarrinho} = useContext(AppContext)
+
+    return (
+        <View style={styles.container}>
+            <Link href="iFode/carrinho" style={styles.link}>carrinho</Link>
+            <FlatList
+                data={comida}
+                keyExtractor={item => item.id.toString()}
+                renderItem={({ item }) => (
+                    <View style={styles.caixa}>
+                        
+                        <Text style={styles.titulo}>{item.titulo}</Text>
+                        <Text style={styles.preco}>{item.preco}</Text>
+                        <Image source={item.Image} style={styles.imagem} />
+                        <Button 
+                        title='Adicionar ao Carrinho'
+                        color={'#53b4e1'}
+                        onPress={() => setCarrinho([...carrinho, item])}
+                        />
+                    </View>
+                )}
+            />
+        </View>
+    );
 };
 
-//Cada caixa da lista
-
-const Caixa = ({ item }) => (
-  <View style={styles.item}>
-    <Link href ={{pathname:`/iFode/carrinho${item.id}`, params: {'salgados':JSON.stringify(item)}}}>
-    <Image source ={item.imagem} style={styles.imagem} /></Link>
-    <Text style={styles.nome}>Nome: {item.preco }</Text>
-    <Text style={styles.preco}>Preço: {item.preco }</Text>
-  </View>
-);
-
-
-
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: '#c2d9e5',
+        padding: 10,
+    },
+    caixa: {
+        backgroundColor: '#ffffff',
+        borderRadius: 12,
+        marginBottom: 15,
+        elevation: 3,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.2,
+        shadowRadius: 5,
+        overflow: 'hidden',
+        paddingBottom: 20,
+    },
+    imagem: {
+        width: '100%',
+        height: 160,
+        borderTopLeftRadius: 12,
+        borderTopRightRadius: 12,
+        
+    },
+    titulo: {
+        fontSize: 20,
+        fontWeight: 'bold',
+        padding: 12,
+        color: '#333',
+        textAlign: 'center',
+    },
+    preco: {
+        fontSize: 14,
+        color: '#666',
+        paddingHorizontal: 12,
+        paddingBottom: 12,
+        textAlign: 'center',
+    },
+    botao: {
+        backgroundColor: '0000ff',
+        borderRadius: 8,
+        paddingVertical: 10,
+        marginHorizontal: 12,
+        marginBottom: 12,
+        alignItems: 'center',
+    }, 
+    
+    textoBotao: {
+        color: '#ffffff',
+        fontSize: 16,
+        fontWeight: 'bold',
+    },
+});
 
 export default Comidas;

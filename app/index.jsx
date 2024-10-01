@@ -16,6 +16,7 @@ export default function Page() {
             <Link href="/poke" style={styles.link}>• Pokemon</Link>
             <Link href="/viagem" style={styles.link}>• Minhas Viagens</Link>
             <Link href="/iFode" style={styles.link}>• Ifome</Link>
+            <Link href="/galeria" style={styles.link}>• Galeria</Link>
             </View>
         </View>
     );
